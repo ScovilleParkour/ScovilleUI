@@ -6,13 +6,12 @@ import dev.meluhdy.melodia.utils.ItemUtils
 import dev.meluhdy.melodia.utils.TranslatedString
 import dev.meluhdy.scoville.core.course.courses.UserCourse
 import dev.meluhdy.scoville.gui.admin.course.CourseCreateGUI
+import dev.meluhdy.scoville.serialization.course.OneJumpCourseSerializer
 import dev.meluhdy.scoville.serialization.course.UserCourseSerializer
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
 class UserCourseCreateGUI(courseName: String, p: Player, pg: MelodiaGUI?) : CourseCreateGUI<UserCourseSerializer.UserCourseBuilder>(courseName, p, pg) {
-
-    override var currBuilder: UserCourseSerializer.UserCourseBuilder = UserCourseSerializer.UserCourseBuilder()
 
     fun difficultyToItem(difficulty: UserCourse.Difficulty): Material {
         return when (difficulty) {
@@ -63,5 +62,9 @@ class UserCourseCreateGUI(courseName: String, p: Player, pg: MelodiaGUI?) : Cour
             }
             return (super.melodiaItems + difficultyItems) as ArrayList<MelodiaGUIItem>
         }
+
+    override fun getBuilder(): UserCourseSerializer.UserCourseBuilder {
+        return UserCourseSerializer.UserCourseBuilder()
+    }
 
 }

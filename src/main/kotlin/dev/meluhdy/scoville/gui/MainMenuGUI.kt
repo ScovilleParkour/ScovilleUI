@@ -5,10 +5,15 @@ import dev.meluhdy.melodia.gui.MelodiaGUIItem
 import dev.meluhdy.melodia.utils.ItemUtils
 import dev.meluhdy.melodia.utils.TranslatedString
 import dev.meluhdy.scoville.ScovilleUI
+import dev.meluhdy.scoville.core.course.CourseManager
+import dev.meluhdy.scoville.core.course.courses.RankupCourse
+import dev.meluhdy.scoville.core.parkourer.ParkourerManager
+import dev.meluhdy.scoville.event.event.CourseJoinEvent
 import dev.meluhdy.scoville.gui.achievement.AchievementTypeGUI
 import dev.meluhdy.scoville.gui.admin.AdminPanelGUI
 import dev.meluhdy.scoville.gui.course.CourseTypeGUI
 import net.kyori.adventure.text.TextComponent
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -25,7 +30,13 @@ class MainMenuGUI(player: Player): MelodiaGUI(ScovilleUI.plugin, player), IScovi
                     getTitle(p, TranslatedString("menu.main.greenhouse.title", arrayOf())),
                     *getDesc(p, TranslatedString("menu.main.greenhouse.desc", arrayOf()))
                 )) {
-                    it.whoClicked.sendMessage("Greenhouse")
+                    val parkourer = ParkourerManager.get(this.p) ?: return@MelodiaGUIItem
+                    val course = CourseManager.get { course -> course is RankupCourse && course.rank == parkourer.rank }
+                    course?.let { c ->
+                        Bukkit.getAsyncScheduler().runNow(ScovilleUI.plugin) {
+                            CourseJoinEvent(this.p, c).callEvent()
+                        }
+                    }
                 },
                 MelodiaGUIItem(13, ItemUtils.createItem(
                     Material.ENDER_EYE, 1,

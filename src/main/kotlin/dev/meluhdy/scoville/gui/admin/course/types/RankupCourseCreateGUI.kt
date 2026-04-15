@@ -16,7 +16,7 @@ class RankupCourseCreateGUI(p: Player, pg: MelodiaGUI?) : CourseCreateGUI<Rankup
 
     var availableRanks = RankupCourse.Rank.entries.filter { rank -> !CourseManager.exists { course -> course is RankupCourse && course.rank == rank } }.sortedBy { rank -> rank.ordinal }
 
-    override var currBuilder: RankupCourseSerializer.RankupCourseBuilder = RankupCourseSerializer.RankupCourseBuilder()
+    override val rows: Int = 5
     override var title: TextComponent = this.getTitle(this.p, TranslatedString("menu.admin.courses.create.title.rankup", arrayOf())) as TextComponent
 
     init {
@@ -25,6 +25,10 @@ class RankupCourseCreateGUI(p: Player, pg: MelodiaGUI?) : CourseCreateGUI<Rankup
             p.sendMessage(this.getTitle(this.p, TranslatedString("menu.admin.courses.create.rankup.exists", arrayOf())))
         }
         this.currBuilder.rank = this.availableRanks.first()
+    }
+
+    override fun getBuilder(): RankupCourseSerializer.RankupCourseBuilder {
+        return RankupCourseSerializer.RankupCourseBuilder()
     }
 
     fun rankToItem(rank: RankupCourse.Rank): Material {
@@ -52,32 +56,37 @@ class RankupCourseCreateGUI(p: Player, pg: MelodiaGUI?) : CourseCreateGUI<Rankup
             val rankItems = ArrayList<MelodiaGUIItem>()
             if (currRankIndex > 0) {
                 val prevRank = this.availableRanks[currRankIndex - 1]
-                rankItems.add(MelodiaGUIItem(28, ItemUtils.createItem(
+                rankItems.add(MelodiaGUIItem(19, ItemUtils.createItem(
                     Material.ARROW, 1,
                     this.getTitle(this.p, TranslatedString("menu.admin.courses.create.rank.title", arrayOf(prevRank.color, prevRank.displayName)))
                 )) {
                     this.currBuilder.rank = prevRank
+                    this.currBuilder.name = prevRank.displayName
+                    this.currBuilder.coloredName = "&${prevRank.color}&l" + prevRank.displayName
                     this.initializeItems()
                     p.updateInventory()
                 })
             }
-            rankItems.add(MelodiaGUIItem(31, ItemUtils.createItem(
+            rankItems.add(MelodiaGUIItem(22, ItemUtils.createItem(
                 this.rankToItem(currRank), 1,
                 this.getTitle(this.p, TranslatedString("menu.admin.courses.create.rank.title", arrayOf(currRank.color, currRank.displayName)))
             )) {})
             if (currRankIndex < this.availableRanks.size - 1) {
                 val nextRank = this.availableRanks[currRankIndex + 1]
-                rankItems.add(MelodiaGUIItem(34, ItemUtils.createItem(
+                rankItems.add(MelodiaGUIItem(25, ItemUtils.createItem(
                     Material.ARROW, 1,
                     this.getTitle(this.p, TranslatedString("menu.admin.courses.create.rank.title", arrayOf(nextRank.color, nextRank.displayName)))
                 )) {
                     this.currBuilder.rank = nextRank
+                    this.currBuilder.name = nextRank.displayName
+                    this.currBuilder.coloredName = "&${nextRank.color}&l" + nextRank.displayName
                     this.initializeItems()
                     p.updateInventory()
                 })
             }
+            rankItems.add(makeConfirmButton(40))
 
-            return (super.melodiaItems + rankItems) as ArrayList<MelodiaGUIItem>
+            return rankItems
         }
 
 }

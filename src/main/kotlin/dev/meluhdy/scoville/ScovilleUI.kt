@@ -32,7 +32,7 @@ class ScovilleUI : MelodiaPlugin() {
     )
     override val listeners: Array<Listener> = arrayOf()
     override val translationFolder: TranslationFolder = TranslationFolder("lang", Locale.of("en"))
-    override val logger: ConsoleLogger = ConsoleLogger("Scoville", LoggingUtils.ConsoleLevel.DEBUG)
+    override val logger: ConsoleLogger = ConsoleLogger("ScovilleUI", LoggingUtils.ConsoleLevel.DEBUG)
     override val savingManagers: Array<MelodiaSavingManager<*>> = arrayOf()
 
 }

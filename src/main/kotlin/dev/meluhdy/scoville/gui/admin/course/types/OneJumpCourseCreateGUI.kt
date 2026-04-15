@@ -13,8 +13,6 @@ import org.bukkit.entity.Player
 
 class OneJumpCourseCreateGUI(courseName: String, p: Player, pg: MelodiaGUI?) : CourseCreateGUI<OneJumpCourseSerializer.OneJumpCourseBuilder>(courseName, p, pg) {
 
-    override var currBuilder: OneJumpCourseSerializer.OneJumpCourseBuilder = OneJumpCourseSerializer.OneJumpCourseBuilder()
-
     fun difficultyToItem(difficulty: OneJumpCourse.OJDifficulty): Material {
         return when (difficulty) {
             OneJumpCourse.OJDifficulty.D1 -> Material.LIGHT_BLUE_TERRACOTTA
@@ -90,6 +88,10 @@ class OneJumpCourseCreateGUI(courseName: String, p: Player, pg: MelodiaGUI?) : C
 
             return (super.melodiaItems + difficultyItems) as ArrayList<MelodiaGUIItem>
         }
+
+    override fun getBuilder(): OneJumpCourseSerializer.OneJumpCourseBuilder {
+        return OneJumpCourseSerializer.OneJumpCourseBuilder()
+    }
 
     override fun extraItems() {
         this.createBorder(this, IScovilleGUI.ojPanes)

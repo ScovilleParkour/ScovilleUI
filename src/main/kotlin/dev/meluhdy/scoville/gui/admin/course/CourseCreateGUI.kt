@@ -26,7 +26,7 @@ import java.util.UUID
 
 abstract class CourseCreateGUI<T : AbstractCourseSerializer.AbstractCourseBuilder<*>>(val courseName: String, p: Player, pg: MelodiaGUI?): MelodiaGUI(ScovilleUI.plugin, p, pg), IScovilleGUI {
 
-    abstract var currBuilder: T
+    var currBuilder: T = this.getBuilder()
 
     override val rows: Int = 6
     override var title: TextComponent = getTitle(p, TranslatedString("menu.admin.courses.create.title", arrayOf(""))) as TextComponent
@@ -54,18 +54,24 @@ abstract class CourseCreateGUI<T : AbstractCourseSerializer.AbstractCourseBuilde
                     this.initializeItems()
                     p.updateInventory()
                 },
-                MelodiaGUIItem(49, ItemUtils.createItem(Material.ANVIL, 1,
-                    getTitle(p, TranslatedString("menu.admin.courses.create.confirm.title", arrayOf()))
-                )) {
-                    ConfirmationGUI(p, this) {
-                        val course = this.currBuilder.build()
-                        CourseManager.add(course)
-                        p.closeInventory()
-                        p.sendMessage(getTitle(this.p, TranslatedString("menu.admin.courses.create.created", arrayOf(this.currBuilder.coloredName ?: "(MISSING COLORED NAME)"))))
-                    }.open()
-                }
+                makeConfirmButton(49)
             )
         }
+
+    fun makeConfirmButton(pos: Int): MelodiaGUIItem {
+        return MelodiaGUIItem(pos, ItemUtils.createItem(Material.ANVIL, 1,
+            getTitle(p, TranslatedString("menu.admin.courses.create.confirm.title", arrayOf()))
+        )) {
+            ConfirmationGUI(p, this) {
+                val course = this.currBuilder.build()
+                CourseManager.add(course)
+                p.closeInventory()
+                p.sendMessage(getTitle(this.p, TranslatedString("menu.admin.courses.create.created", arrayOf(this.currBuilder.coloredName ?: "(MISSING COLORED NAME)"))))
+            }.open()
+        }
+    }
+
+    abstract fun getBuilder(): T
 
     override fun open() {
         this.currBuilder.name = courseName

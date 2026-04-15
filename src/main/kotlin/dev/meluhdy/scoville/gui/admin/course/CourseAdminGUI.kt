@@ -18,7 +18,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
 
-class CourseAdminGUI(p: Player, pg: MelodiaGUI?): MelodiaPaginationGUI<AbstractCourse>(Scoville.Companion.plugin, p, pg),
+class CourseAdminGUI(p: Player, pg: MelodiaGUI?): MelodiaPaginationGUI<AbstractCourse>(Scoville.plugin, p, pg),
     IScovilleGUI {
 
     override val itemRows: Int = 3
@@ -29,29 +29,34 @@ class CourseAdminGUI(p: Player, pg: MelodiaGUI?): MelodiaPaginationGUI<AbstractC
     override fun toItem(
         pos: Int,
         obj: AbstractCourse
-    ): MelodiaGUIItem = MelodiaGUIItem(
-        pos, ItemUtils.modifyItem(
-            obj.baseStack ?: ItemStack(Material.STONE_BUTTON), getTitle(obj.coloredName ?: ""),
-            getTitle("&8${obj.authors.joinToString(", ") { uuid -> UUIDManager.getName(uuid) }}")
-        )
-    ) {
-        it.whoClicked.sendMessage("Fuck ${obj.name}")
+    ): MelodiaGUIItem {
+        return MelodiaGUIItem(
+            pos, ItemUtils.modifyItem(
+                obj.baseStack ?: ItemStack(Material.STONE_BUTTON), getTitle(obj.coloredName ?: ""),
+                getTitle("&8${obj.authors.joinToString(", ") { uuid -> UUIDManager.getName(uuid) }}")
+            )
+        ) {
+            it.whoClicked.sendMessage("Fuck ${obj.name}")
+        }
     }
 
     override val rows: Int = 5
     override val title: TextComponent = getTitle(p, TranslatedString("menu.courses.title", arrayOf())) as TextComponent
 
-    override val melodiaItems: ArrayList<MelodiaGUIItem> = arrayListOf(
-        MelodiaGUIItem(
-            40, ItemUtils.createSkull(
-                "https://textures.minecraft.net/texture/5ff31431d64587ff6ef98c0675810681f8c13bf96f51d9cb07ed7852b2ffd1",
-                1,
-                getTitle(p, TranslatedString("menu.admin.courses.new", arrayOf())) as TextComponent
+    override val melodiaItems: ArrayList<MelodiaGUIItem>
+        get() {
+            val base = super.melodiaItems
+            base.add(MelodiaGUIItem(
+                40, ItemUtils.createSkull(
+                    "https://textures.minecraft.net/texture/5ff31431d64587ff6ef98c0675810681f8c13bf96f51d9cb07ed7852b2ffd1",
+                    1,
+                    getTitle(p, TranslatedString("menu.admin.courses.new", arrayOf())) as TextComponent
                 )
-        ) {
-            CourseCreateTypeGUI(p, this).open()
+            ) {
+                CourseCreateTypeGUI(p, this).open()
+            })
+            return base
         }
-    )
 
     override fun extraItems() {
         createRow(this, 3)
