@@ -11,6 +11,7 @@ import dev.meluhdy.scoville.serialization.course.RankupCourseSerializer
 import net.kyori.adventure.text.TextComponent
 import org.bukkit.Material
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemStack
 
 class RankupCourseCreateGUI(p: Player, pg: MelodiaGUI?) : CourseCreateGUI<RankupCourseSerializer.RankupCourseBuilder>("", p, pg) {
 
@@ -48,6 +49,13 @@ class RankupCourseCreateGUI(p: Player, pg: MelodiaGUI?) : CourseCreateGUI<Rankup
         }
     }
 
+    fun updateBuilder(rank: RankupCourse.Rank) {
+        this.currBuilder.rank = rank
+        this.currBuilder.name = rank.displayName
+        this.currBuilder.coloredName = "&${rank.color}&l" + rank.displayName
+        this.currBuilder.baseStack = ItemStack(rankToItem(rank))
+    }
+
     override val melodiaItems: ArrayList<MelodiaGUIItem>
         get() {
             val currRank = this.currBuilder.rank
@@ -60,9 +68,7 @@ class RankupCourseCreateGUI(p: Player, pg: MelodiaGUI?) : CourseCreateGUI<Rankup
                     Material.ARROW, 1,
                     this.getTitle(this.p, TranslatedString("menu.admin.courses.create.rank.title", arrayOf(prevRank.color, prevRank.displayName)))
                 )) {
-                    this.currBuilder.rank = prevRank
-                    this.currBuilder.name = prevRank.displayName
-                    this.currBuilder.coloredName = "&${prevRank.color}&l" + prevRank.displayName
+                    this.updateBuilder(prevRank)
                     this.initializeItems()
                     p.updateInventory()
                 })
@@ -77,9 +83,7 @@ class RankupCourseCreateGUI(p: Player, pg: MelodiaGUI?) : CourseCreateGUI<Rankup
                     Material.ARROW, 1,
                     this.getTitle(this.p, TranslatedString("menu.admin.courses.create.rank.title", arrayOf(nextRank.color, nextRank.displayName)))
                 )) {
-                    this.currBuilder.rank = nextRank
-                    this.currBuilder.name = nextRank.displayName
-                    this.currBuilder.coloredName = "&${nextRank.color}&l" + nextRank.displayName
+                    this.updateBuilder(nextRank)
                     this.initializeItems()
                     p.updateInventory()
                 })

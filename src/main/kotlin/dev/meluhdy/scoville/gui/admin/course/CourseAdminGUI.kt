@@ -24,7 +24,7 @@ class CourseAdminGUI(p: Player, pg: MelodiaGUI?): MelodiaPaginationGUI<AbstractC
     override val itemRows: Int = 3
     override val prevItem: ItemStack = getBack(36, this).item
     override val nextItem: ItemStack = getNext(p)
-    override val objects: ArrayList<AbstractCourse> = CourseManager.getAll()
+    override val objects: ArrayList<AbstractCourse> = CourseManager.getAll().sortedBy { course -> course.timeCreated } as ArrayList<AbstractCourse>
 
     override fun toItem(
         pos: Int,

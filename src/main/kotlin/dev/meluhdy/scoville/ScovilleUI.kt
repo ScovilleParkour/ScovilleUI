@@ -19,8 +19,6 @@ class ScovilleUI : MelodiaPlugin() {
 
     init {
         plugin = this
-
-        MenuCommand.mainMenu = { p -> MainMenuGUI(p) }
     }
 
     override val melodiaCommands: Array<MelodiaCommand> = arrayOf()

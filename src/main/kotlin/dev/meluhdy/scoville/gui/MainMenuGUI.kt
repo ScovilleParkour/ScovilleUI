@@ -78,7 +78,7 @@ class MainMenuGUI(player: Player): MelodiaGUI(ScovilleUI.plugin, player), IScovi
                     getTitle(p, TranslatedString("menu.main.spawn.title", arrayOf())),
                     *getDesc(p, TranslatedString("menu.main.spawn.desc", arrayOf()))
                 )) {
-                    it.whoClicked.sendMessage("Spawn")
+                    p.performCommand("l")
                 },
                 MelodiaGUIItem(48, ItemUtils.createItem(
                     Material.MUSIC_DISC_CHIRP, 1,
