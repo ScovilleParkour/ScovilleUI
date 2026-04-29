@@ -16,7 +16,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 
-class CourseCreateTypeGUI(p: Player, pg: MelodiaGUI?) : MelodiaGUI(ScovilleUI.plugin, p, pg), IScovilleGUI {
+class CourseCreateTypeGUI(p: Player, pg: MelodiaGUI?, val courseName: String? = null) : MelodiaGUI(ScovilleUI.plugin, p, pg), IScovilleGUI {
 
     override val rows: Int = 5
     override val title: TextComponent = getTitle(p, TranslatedString("menu.courses.type.title", arrayOf())) as TextComponent
@@ -26,8 +26,12 @@ class CourseCreateTypeGUI(p: Player, pg: MelodiaGUI?) : MelodiaGUI(ScovilleUI.pl
             getTitle(p, TranslatedString("menu.courses.type.user.title", arrayOf()))
         )) {
             p.closeInventory()
-            TextUtils.prompt(getTitle(p, TranslatedString("menu.admin.courses.create.prompt", arrayOf())) as TextComponent, p) {
-                UserCourseCreateGUI(it.content(), p, this).open()
+            if (courseName != null) {
+                UserCourseCreateGUI(courseName, p, this).open()
+            } else {
+                TextUtils.prompt(getTitle(p, TranslatedString("menu.admin.courses.create.prompt", arrayOf())) as TextComponent, p) {
+                    UserCourseCreateGUI(it.content(), p, this).open()
+                }
             }
         },
         MelodiaGUIItem(22, ItemUtils.createItem(
@@ -41,8 +45,12 @@ class CourseCreateTypeGUI(p: Player, pg: MelodiaGUI?) : MelodiaGUI(ScovilleUI.pl
             getTitle(p, TranslatedString("menu.courses.type.oj.title", arrayOf()))
         )) {
             p.closeInventory()
-            TextUtils.prompt(getTitle(p, TranslatedString("menu.admin.courses.create.prompt", arrayOf())) as TextComponent, p) {
-                OneJumpCourseCreateGUI(it.content(), p, this).open()
+            if (courseName != null) {
+                OneJumpCourseCreateGUI(courseName, p, this).open()
+            } else {
+                TextUtils.prompt(getTitle(p, TranslatedString("menu.admin.courses.create.prompt", arrayOf())) as TextComponent, p) {
+                    OneJumpCourseCreateGUI(it.content(), p, this).open()
+                }
             }
         },
         getBack(36, this)
