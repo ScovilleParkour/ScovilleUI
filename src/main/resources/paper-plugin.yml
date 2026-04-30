@@ -22,3 +22,6 @@ dependencies:
     ScovilleAchievements:
       load: BEFORE
       required: true
+    ScovilleChat:
+      load: BEFORE
+      required: true

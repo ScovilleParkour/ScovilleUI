@@ -24,6 +24,7 @@ dependencies {
     multiModule.tryMultiModule(":Melodia", "dev.meluhdy:melodia:1.0-SNAPSHOT")
     multiModule.tryMultiModule(":ScovilleCore", "dev.meluhdy:scoville-core:1.0-SNAPSHOT")
     multiModule.tryMultiModule(":ScovilleAchievements", "dev.meluhdy:scoville-achievements:1.0-SNAPSHOT")
+    multiModule.tryMultiModule(":ScovilleChat", "dev.meluhdy:scoville-chat:1.0-SNAPSHOT")
 }
 
 val targetJavaVersion = 25

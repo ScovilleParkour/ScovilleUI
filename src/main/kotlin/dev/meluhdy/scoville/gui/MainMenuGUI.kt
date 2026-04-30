@@ -11,6 +11,7 @@ import dev.meluhdy.scoville.core.parkourer.ParkourerManager
 import dev.meluhdy.scoville.event.event.CourseJoinEvent
 import dev.meluhdy.scoville.gui.achievement.AchievementTypeGUI
 import dev.meluhdy.scoville.gui.admin.AdminPanelGUI
+import dev.meluhdy.scoville.gui.cosmetic.CosmeticInventory
 import dev.meluhdy.scoville.gui.course.CourseTypeGUI
 import net.kyori.adventure.text.TextComponent
 import org.bukkit.Bukkit
@@ -57,7 +58,7 @@ class MainMenuGUI(player: Player): MelodiaGUI(ScovilleUI.plugin, player), IScovi
                     getTitle(p, TranslatedString("menu.main.cosmetics.title", arrayOf())),
                     *getDesc(p, TranslatedString("menu.main.cosmetics.desc", arrayOf()))
                 )) {
-                    it.whoClicked.sendMessage("Cosmetics")
+                    CosmeticInventory(p, this).open()
                 },
                 MelodiaGUIItem(22, ItemUtils.createSkull(
                     "https://textures.minecraft.net/texture/d55fc2c1bae8e08d3e426c17c455d2ff9342286dffa3c7c23f4bd365e0c3fe", 1,

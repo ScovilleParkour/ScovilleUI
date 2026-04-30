@@ -68,7 +68,7 @@ class AchievementListGUI(val diff: Achievement.AchievementDifficulty, p: Player,
                 getTitle("&8&l"+ TextUtils.translate(achievementsPlugin, obj.nameId, p.locale())),
                 getTitle("&7???"),
                 *getCentralLore(obj),
-                getTitle(p, TranslatedString("menu.achievements.list.locked", arrayOf()))
+                getTitle(p, TranslatedString("menu.general.locked", arrayOf()))
             )
         } else {
             ItemUtils.modifyItem(
@@ -76,7 +76,7 @@ class AchievementListGUI(val diff: Achievement.AchievementDifficulty, p: Player,
                 getTitle("&${obj.diff.color}&l"+ TextUtils.translate(achievementsPlugin, obj.nameId, p.locale())),
                 getTitle("&7"+ TextUtils.translate(achievementsPlugin, obj.descId, p.locale())),
                 *getCentralLore(obj),
-                getTitle(p, TranslatedString("menu.achievements.list.unlocked", arrayOf()))
+                getTitle(p, TranslatedString("menu.general.unlocked", arrayOf()))
             )
         }
 
