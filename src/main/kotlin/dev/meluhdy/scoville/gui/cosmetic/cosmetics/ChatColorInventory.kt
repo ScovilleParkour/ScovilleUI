@@ -5,6 +5,7 @@ import dev.meluhdy.melodia.gui.MelodiaGUIItem
 import dev.meluhdy.melodia.utils.ItemUtils
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.TranslatedString
+import dev.meluhdy.melodia.utils.fromLegacyMessage
 import dev.meluhdy.melodia.utils.fromMiniMessage
 import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.gui.IScovilleGUI
@@ -31,11 +32,11 @@ class ChatColorInventory(p: Player, prevGUI: MelodiaGUI?) : MelodiaGUI(ScovilleU
             ItemUtils.createItem(
                 mat, 1,
                 getTitle(p, TranslatedString("menu.cosmetics.chat_color.${chatColor.color}.title", arrayOf())),
-                TextUtils.legacyToMiniMessage("&8&m----------------").fromMiniMessage(),
+                "&8&m----------------".fromLegacyMessage(),
                 getTitle(p, TranslatedString("menu.cosmetics.chat_color.${chatColor.color}.desc", arrayOf())),
                 Component.text(""),
                 selectMessage,
-                TextUtils.legacyToMiniMessage("&8&m----------------").fromMiniMessage()
+                "&8&m----------------".fromLegacyMessage()
             )
         ) {
             settings.chatColor = ChatColorModifier(chatColor)

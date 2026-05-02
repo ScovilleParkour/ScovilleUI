@@ -5,6 +5,7 @@ import dev.meluhdy.melodia.gui.MelodiaGUIItem
 import dev.meluhdy.melodia.utils.ItemUtils
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.TranslatedString
+import dev.meluhdy.melodia.utils.fromLegacyMessage
 import dev.meluhdy.melodia.utils.fromMiniMessage
 import dev.meluhdy.scoville.ScovilleUI
 import net.kyori.adventure.text.Component
@@ -65,8 +66,8 @@ interface IScovilleGUI {
     }
     fun getNext(p: Player) = ItemUtils.createItem(Material.ARROW, 1, getTitle(p, TranslatedString("menu.generic.next.title", arrayOf())))
 
-    fun getTitle(p: Player, ts: TranslatedString): Component = TextUtils.legacyToMiniMessage(TextUtils.translate(ScovilleUI.plugin, ts.id, p.locale(), *ts.args)).fromMiniMessage()
-    fun getTitle(s: String): Component = TextUtils.legacyToMiniMessage(s).fromMiniMessage()
-    fun getDesc(p: Player, ts: TranslatedString): Array<Component> = TextUtils.translateList(ScovilleUI.plugin, ts.id, p.locale(), *ts.args).map { TextUtils.legacyToMiniMessage(it).fromMiniMessage() }.toTypedArray()
+    fun getTitle(p: Player, ts: TranslatedString): Component = TextUtils.translate(ScovilleUI.plugin, ts.id, p.locale(), *ts.args).fromLegacyMessage()
+    fun getTitle(s: String): Component = s.fromLegacyMessage()
+    fun getDesc(p: Player, ts: TranslatedString): Array<Component> = TextUtils.translateList(ScovilleUI.plugin, ts.id, p.locale(), *ts.args).map { it.fromLegacyMessage() }.toTypedArray()
 
 }
