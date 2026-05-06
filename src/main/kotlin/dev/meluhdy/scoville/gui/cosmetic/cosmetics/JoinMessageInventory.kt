@@ -3,14 +3,12 @@ package dev.meluhdy.scoville.gui.cosmetic.cosmetics
 import dev.meluhdy.melodia.gui.MelodiaGUI
 import dev.meluhdy.melodia.gui.MelodiaGUIItem
 import dev.meluhdy.melodia.utils.ItemUtils
-import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.TranslatedString
 import dev.meluhdy.melodia.utils.fromLegacyMessage
-import dev.meluhdy.melodia.utils.fromMiniMessage
 import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.gui.IScovilleGUI
-import dev.meluhdy.scovilleChat.core.modifiers.ConnectionMessages
-import dev.meluhdy.scovilleChat.core.player.PlayerMessageSettingsManager
+import dev.meluhdy.scovilleCosmetics.core.modifiers.ConnectionMessages
+import dev.meluhdy.scovilleCosmetics.core.player.PlayerMessageSettingsManager
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.TextComponent
 import org.bukkit.Material

@@ -9,9 +9,9 @@ import dev.meluhdy.melodia.utils.fromLegacyMessage
 import dev.meluhdy.melodia.utils.fromMiniMessage
 import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.gui.IScovilleGUI
-import dev.meluhdy.scovilleChat.core.player.PlayerMessageSettingsManager
-import dev.meluhdy.scovilleChat.core.tag.ChatTag
-import dev.meluhdy.scovilleChat.core.tag.TagManager
+import dev.meluhdy.scovilleCosmetics.core.player.PlayerMessageSettingsManager
+import dev.meluhdy.scovilleCosmetics.core.tag.ChatTag
+import dev.meluhdy.scovilleCosmetics.core.tag.TagManager
 import net.kyori.adventure.text.TextComponent
 import org.bukkit.Material
 import org.bukkit.entity.Player
