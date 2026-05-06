@@ -6,11 +6,9 @@ import dev.meluhdy.melodia.gui.MelodiaPaginationGUI
 import dev.meluhdy.melodia.utils.ItemUtils
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.TranslatedString
-import dev.meluhdy.melodia.utils.fromMiniMessage
-import dev.meluhdy.scoville.Scoville
 import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.achievement.Achievement
-import dev.meluhdy.scoville.achievement.AchievementManager
+import dev.meluhdy.scovilleAchievements.achievement.AchievementManager
 import dev.meluhdy.scoville.gui.IScovilleGUI
 import dev.meluhdy.scovilleAchievements.ScovilleAchievements
 import dev.meluhdy.scovilleAchievements.core.AchievementEarnerManager

@@ -8,6 +8,7 @@ import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.gui.IScovilleGUI
 import dev.meluhdy.scoville.gui.cosmetic.cosmetics.ChatColorInventory
 import dev.meluhdy.scoville.gui.cosmetic.cosmetics.JoinMessageInventory
+import dev.meluhdy.scoville.gui.cosmetic.cosmetics.TagInventory
 import net.kyori.adventure.text.TextComponent
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -26,7 +27,7 @@ class CosmeticInventory(p: Player, prevGUI: MelodiaGUI?) : MelodiaGUI(ScovilleUI
                 title=getTitle(p, TranslatedString("menu.cosmetics.tags.title", arrayOf()))
             )
         ) {
-            p.sendMessage("Tags")
+            TagInventory(p, this).open()
         },
         MelodiaGUIItem(
             12,

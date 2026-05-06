@@ -6,8 +6,6 @@ import dev.meluhdy.melodia.manager.MelodiaSavingManager
 import dev.meluhdy.melodia.utils.ConsoleLogger
 import dev.meluhdy.melodia.utils.LoggingUtils
 import dev.meluhdy.melodia.utils.TranslationFolder
-import dev.meluhdy.scoville.command.pk.MenuCommand
-import dev.meluhdy.scoville.gui.MainMenuGUI
 import org.bukkit.event.Listener
 import java.util.Locale
 
