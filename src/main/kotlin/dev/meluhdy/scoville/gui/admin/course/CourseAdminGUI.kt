@@ -4,10 +4,8 @@ import dev.meluhdy.melodia.gui.MelodiaGUI
 import dev.meluhdy.melodia.gui.MelodiaGUIItem
 import dev.meluhdy.melodia.gui.MelodiaPaginationGUI
 import dev.meluhdy.melodia.utils.ItemUtils
-import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.TranslatedString
-import dev.meluhdy.melodia.utils.fromMiniMessage
-import dev.meluhdy.melodia.utils.uuid.UUIDManager
+import dev.meluhdy.melodia.utils.manager.UUIDManager
 import dev.meluhdy.scoville.Scoville
 import dev.meluhdy.scoville.core.course.AbstractCourse
 import dev.meluhdy.scoville.core.course.CourseManager

@@ -7,8 +7,8 @@ import dev.meluhdy.melodia.utils.TranslatedString
 import dev.meluhdy.melodia.utils.fromLegacyMessage
 import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.gui.IScovilleGUI
-import dev.meluhdy.scovilleCosmetics.core.modifiers.ChatColorModifier
-import dev.meluhdy.scovilleCosmetics.core.player.PlayerMessageSettingsManager
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.ChatColorModifier
+import dev.meluhdy.scovilleCosmetics.core.player.PlayerCosmeticsManager
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.TextComponent
 import org.bukkit.Material
@@ -18,7 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 class ChatColorInventory(p: Player, prevGUI: MelodiaGUI?) : MelodiaGUI(ScovilleUI.plugin, p, prevGUI), IScovilleGUI {
 
     fun makeItem(pos: Int, mat: Material, chatColor: ChatColorModifier.ChatColor): MelodiaGUIItem {
-        val settings = PlayerMessageSettingsManager.getOrCreate(p)
+        val settings = PlayerCosmeticsManager.getOrCreate(p)
         val selectMessage: Component = if (settings.chatColor.chatColor == chatColor) {
             getTitle(p, TranslatedString("menu.general.selected.true", arrayOf()))
         } else {

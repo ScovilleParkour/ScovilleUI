@@ -7,7 +7,9 @@ import dev.meluhdy.melodia.utils.TranslatedString
 import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.gui.IScovilleGUI
 import dev.meluhdy.scoville.gui.cosmetic.cosmetics.tag.TagListInventory
-import dev.meluhdy.scovilleCosmetics.core.tag.ChatTag
+import dev.meluhdy.scoville.gui.cosmetic.cosmetics.tag.type.RankTagListInventory
+import dev.meluhdy.scoville.gui.cosmetic.cosmetics.tag.type.SpecialTagListInventory
+import dev.meluhdy.scovilleCosmetics.core.chat.tag.ChatTag
 import net.kyori.adventure.text.TextComponent
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -38,7 +40,11 @@ class TagInventory(p: Player, prevGUI: MelodiaGUI? = null) : MelodiaGUI(Scoville
             getTitle(p, TranslatedString(title, arrayOf()))
         )
     ) {
-        TagListInventory(type, p, this).open()
+        when (type) {
+            ChatTag.TagType.RANK -> RankTagListInventory(p, this).open()
+            ChatTag.TagType.SPECIAL -> SpecialTagListInventory(p, this).open()
+            else -> p.sendMessage(type.name)
+        }
     }
 
     override fun extraItems() {

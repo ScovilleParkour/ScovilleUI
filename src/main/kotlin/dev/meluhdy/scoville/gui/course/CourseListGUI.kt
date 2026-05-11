@@ -6,7 +6,7 @@ import dev.meluhdy.melodia.gui.MelodiaPaginationGUI
 import dev.meluhdy.melodia.utils.ItemUtils
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.TranslatedString
-import dev.meluhdy.melodia.utils.uuid.UUIDManager
+import dev.meluhdy.melodia.utils.manager.UUIDManager
 import dev.meluhdy.scoville.ScovilleUI
 import dev.meluhdy.scoville.core.course.AbstractCourse
 import dev.meluhdy.scoville.core.course.CourseManager
